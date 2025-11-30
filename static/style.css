@@ -1,0 +1,19 @@
+.debug-border {
+  border: 0.1rem solid;
+}
+
+.nav-right {
+  flex-direction: row-reverse;
+}
+
+@media screen and (width < 70rem) {
+  .nav-horizontal {
+    display: none;
+  }
+}
+
+@media screen and (width >= 70rem) {
+  .nav-vertical {
+    display: none;
+  }
+}

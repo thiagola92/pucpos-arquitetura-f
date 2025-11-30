@@ -9,6 +9,18 @@ export default define.page(function Login(ctx) {
         <title>Fresh Store</title>
       </Head>
       <NavigationBar />
+      <div>
+        <form>
+          <label>
+            E-mail
+            <input type="email" />
+          </label>
+          <label>
+            Password
+            <input type="password" />
+          </label>
+        </form>
+      </div>
     </div>
   );
 });

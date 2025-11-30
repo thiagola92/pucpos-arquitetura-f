@@ -43,4 +43,7 @@ sudo docker image rm pucpos-f
 
 - https://fresh.deno.dev/
 - https://fakestoreapi.com/
-- https://www.w3schools.com/tags/
+- https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements
+- https://picocss.com/
+- https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Events#inline_event_handlers_%E2%80%94_dont_use_these
+- https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles
