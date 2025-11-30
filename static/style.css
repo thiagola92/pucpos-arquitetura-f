@@ -2,18 +2,35 @@
   border: 0.1rem solid;
 }
 
-.nav-right {
-  flex-direction: row-reverse;
+.nav-horizontal search {
+  padding-inline: 5rem;
 }
 
-/* @media screen and (width < 70rem) {
+.nav-horizontal img {
+  min-width: 2.5rem;
+}
+
+.nav-vertical summary img {
+  min-width: 2.5rem;
+  max-width: 2.5rem;
+}
+
+.nav-vertical summary::after {
+  height: 2.5rem;
+  width: 2.5rem;
+  transform: rotate(0deg);
+  background-image: url("/bars.svg");
+  background-size: 100% 100%;
+}
+
+@media screen and (width < 60rem) {
   .nav-horizontal {
     display: none;
   }
 }
 
-@media screen and (width >= 70rem) {
+@media screen and (width >= 60rem) {
   .nav-vertical {
     display: none;
   }
-} */
+}

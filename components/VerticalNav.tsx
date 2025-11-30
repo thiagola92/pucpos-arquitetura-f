@@ -3,24 +3,13 @@ export interface VerticalNavPros {
 
 export function VerticalNav(props: VerticalNavPros) {
   return (
-    <div>
-      {/* Top */}
-      <nav class="nav-vertical">
-        <ul>
-          <li>
-            <a href="/">
-              <img src="logo.svg" width="50" alt="logo" />
-            </a>
-          </li>
-        </ul>
-        <ul>
-          <li class="nav-right">
-            <img src="bars.svg" width="50" alt="logo" />
-          </li>
-        </ul>
-      </nav>
-      {/* Bottom */}
-      <aside class="nav-vertical">
+    <details class="nav-vertical">
+      <summary>
+        <a href="/">
+          <img src="logo.svg" alt="logo" />
+        </a>
+      </summary>
+      <aside>
         <nav>
           <ul>
             <li>
@@ -45,6 +34,6 @@ export function VerticalNav(props: VerticalNavPros) {
           </ul>
         </nav>
       </aside>
-    </div>
+    </details>
   );
 }

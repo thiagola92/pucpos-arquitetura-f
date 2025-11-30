@@ -5,10 +5,10 @@ export function HorizontalNav(props: HorizontalNavPros) {
   return (
     <nav class="nav-horizontal">
       {/* Left */}
-      <ul class="container-fluid">
+      <ul>
         <li>
           <a href="/">
-            <img src="logo.svg" width="50" alt="logo" />
+            <img src="logo.svg" alt="logo" />
           </a>
         </li>
         <li>
@@ -21,7 +21,7 @@ export function HorizontalNav(props: HorizontalNavPros) {
       {/* Middle */}
       <ul class="container-fluid">
         <li class="container-fluid">
-          <search>
+          <search class="">
             <form action="/search" role="search">
               <input type="search" name="q" />
               <input type="submit" value="Search" />
@@ -30,7 +30,7 @@ export function HorizontalNav(props: HorizontalNavPros) {
         </li>
       </ul>
       {/* Right */}
-      <ul class="container-fluid nav-right">
+      <ul>
         <li>
           <a href="login">
             Login
