@@ -6,7 +6,7 @@
   flex-direction: row-reverse;
 }
 
-@media screen and (width < 70rem) {
+/* @media screen and (width < 70rem) {
   .nav-horizontal {
     display: none;
   }
@@ -16,4 +16,4 @@
   .nav-vertical {
     display: none;
   }
-}
+} */
