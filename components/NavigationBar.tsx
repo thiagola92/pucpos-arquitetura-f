@@ -1,14 +1,16 @@
 import { VerticalNav } from "@/components/VerticalNav.tsx";
 import { HorizontalNav } from "./HorizontalNav.tsx";
+import { LoginDialog } from "../islands/LoginDialog.tsx";
 
 export interface NavigationBarPros {
 }
 
 export function NavigationBar(props: NavigationBarPros) {
   return (
-    <div class="container-fluid">
+    <header class="container-fluid">
       <HorizontalNav />
       <VerticalNav />
-    </div>
+      <LoginDialog />
+    </header>
   );
 }

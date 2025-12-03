@@ -1,3 +1,5 @@
+import { LoginAnchor } from "../islands/LoginAnchor.tsx";
+
 export interface VerticalNavPros {
 }
 
@@ -19,9 +21,7 @@ export function VerticalNav(props: VerticalNavPros) {
               <a href="/about">About</a>
             </li>
             <li>
-              <a href="login">
-                Login
-              </a>
+              <LoginAnchor />
             </li>
             <li>
               <search>

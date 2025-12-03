@@ -3,7 +3,7 @@
 }
 
 .nav-horizontal search {
-  padding-inline: 5rem;
+  max-width: 45rem;
 }
 
 .nav-horizontal img {
@@ -19,17 +19,26 @@
   height: 2.5rem;
   width: 2.5rem;
   transform: rotate(0deg);
-  background-image: url("/bars.svg");
+  background-image: url("navigation/bars.svg");
   background-size: 100% 100%;
 }
 
-@media screen and (width < 60rem) {
+.about {
+  max-width: 30rem;
+}
+
+@media screen and (width < 768px) {
   .nav-horizontal {
     display: none;
   }
+
+  .home img {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
-@media screen and (width >= 60rem) {
+@media screen and (width >= 768px) {
   .nav-vertical {
     display: none;
   }

@@ -1,3 +1,5 @@
+import { LoginAnchor } from "../islands/LoginAnchor.tsx";
+
 export interface HorizontalNavPros {
 }
 
@@ -21,7 +23,7 @@ export function HorizontalNav(props: HorizontalNavPros) {
       {/* Middle */}
       <ul class="container-fluid">
         <li class="container-fluid">
-          <search class="">
+          <search class="container-fluid">
             <form action="/search" role="search">
               <input type="search" name="q" />
               <input type="submit" value="Search" />
@@ -32,9 +34,7 @@ export function HorizontalNav(props: HorizontalNavPros) {
       {/* Right */}
       <ul>
         <li>
-          <a href="login">
-            Login
-          </a>
+          <LoginAnchor />
         </li>
       </ul>
     </nav>

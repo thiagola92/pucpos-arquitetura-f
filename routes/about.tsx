@@ -9,6 +9,20 @@ export default define.page(function About(ctx) {
         <title>Fresh Store</title>
       </Head>
       <NavigationBar />
+      <main class="container about">
+        <h1>Fresh Store</h1>
+        <p>
+          Welcome!
+        </p>
+        <p>
+          Our mission is to give <b>you</b>{" "}
+          a great experience by bringing products safely to your house.
+        </p>
+        <p>
+          Feel free to contact us through{" "}
+          <a href="mailto:">cosumterservice@fresh.com</a>
+        </p>
+      </main>
     </div>
   );
 });
