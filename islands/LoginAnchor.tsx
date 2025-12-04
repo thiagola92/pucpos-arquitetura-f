@@ -1,4 +1,5 @@
 export interface LoginAnchorPros {
+  visible: boolean;
 }
 
 function openModal() {
@@ -10,9 +11,19 @@ function openModal() {
 }
 
 export function LoginAnchor(props: LoginAnchorPros) {
+  if (props.visible) {
+    return (
+      <button type="button" onClick={openModal}>
+        Login
+      </button>
+    );
+  }
+
   return (
-    <button type="button" onClick={openModal}>
-      Login
-    </button>
+    <a href="/logout">
+      <button type="button">
+        Logout
+      </button>
+    </a>
   );
 }

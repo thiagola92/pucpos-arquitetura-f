@@ -1,6 +1,7 @@
 import { LoginAnchor } from "../islands/LoginAnchor.tsx";
 
 export interface HorizontalNavPros {
+  loginVisible: boolean;
 }
 
 export function HorizontalNav(props: HorizontalNavPros) {
@@ -34,7 +35,7 @@ export function HorizontalNav(props: HorizontalNavPros) {
       {/* Right */}
       <ul>
         <li>
-          <LoginAnchor />
+          <LoginAnchor visible={props.loginVisible} />
         </li>
       </ul>
     </nav>

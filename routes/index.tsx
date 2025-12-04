@@ -8,7 +8,7 @@ export default define.page(function Home(ctx) {
       <Head>
         <title>Fresh Store</title>
       </Head>
-      <NavigationBar />
+      <NavigationBar loginVisible={!ctx.state.logged} />
       <main class="container">
         <h1>Every type of product, just search!</h1>
         <div class="grid home">

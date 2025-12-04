@@ -1,23 +1,22 @@
 import { App, staticFiles } from "fresh";
 import { define, type State } from "./utils.ts";
+import { getCookies } from "@std/http/cookie";
 
 export const app = new App<State>();
 
 app.use(staticFiles());
 
-// Pass a shared value from a middleware
 app.use(async (ctx) => {
-  ctx.state.shared = "example";
+  // https://docs.deno.com/runtime/reference/std/http/#examples
+  const cookies = getCookies(ctx.req.headers);
+  ctx.state.logged = "token" in cookies && cookies["token"] == "xxxx";
   return await ctx.next();
 });
 
-// Print request on terminal.
 const LoggerMiddleware = define.middleware((ctx) => {
-  console.log(`${ctx.req.method} ${ctx.req.url}`);
+  console.log(`${ctx.req.method} ${ctx.req.url} ${ctx.state.logged}`);
   return ctx.next();
 });
 
 app.use(LoggerMiddleware);
-
-// Include file-system based routes here
 app.fsRoutes();

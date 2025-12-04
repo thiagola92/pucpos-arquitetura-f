@@ -8,7 +8,7 @@ export default define.page(function About(ctx) {
       <Head>
         <title>Fresh Store</title>
       </Head>
-      <NavigationBar />
+      <NavigationBar loginVisible={!ctx.state.logged} />
       <main class="container about">
         <h1>Fresh Store</h1>
         <p>
