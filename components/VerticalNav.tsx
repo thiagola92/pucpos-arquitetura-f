@@ -1,4 +1,4 @@
-import { LoginAnchor } from "../islands/LoginAnchor.tsx";
+import { AuthAnchor } from "../islands/AuthAnchor.tsx";
 
 export interface VerticalNavPros {
   loginVisible: boolean;
@@ -22,7 +22,7 @@ export function VerticalNav(props: VerticalNavPros) {
               <a href="/about">About</a>
             </li>
             <li>
-              <LoginAnchor visible={props.loginVisible} />
+              <AuthAnchor visible={props.loginVisible} />
             </li>
             <li>
               <search>

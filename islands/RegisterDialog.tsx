@@ -1,20 +1,20 @@
-export interface LoginDialogPros {
+export interface RegisterDialogPros {
 }
 
 function closeModal() {
-  const dialog = document.getElementById("loginDialog");
+  const dialog = document.getElementById("registerDialog");
 
   if (dialog instanceof HTMLDialogElement) {
     dialog.close();
   }
 }
 
-export function LoginDialog(props: LoginDialogPros) {
+export function RegisterDialog(props: RegisterDialogPros) {
   return (
-    <dialog id="loginDialog">
+    <dialog id="registerDialog">
       <article>
         <header>
-          Access account
+          Create account
           <button
             type="submit"
             aria-label="Close"
@@ -23,7 +23,12 @@ export function LoginDialog(props: LoginDialogPros) {
           >
           </button>
         </header>
-        <form action="login" method="post">
+        <form action="register" method="post">
+          <label>
+            Email
+            {/* Remove value after testing as much as possible */}
+            <input type="email" name="email" value="myemail@example.com" />
+          </label>
           <label>
             Username
             {/* Remove value after testing as much as possible */}
@@ -34,14 +39,8 @@ export function LoginDialog(props: LoginDialogPros) {
             {/* Remove value after testing as much as possible */}
             <input type="password" name="password" value="password" />
           </label>
-          <button type="submit">Login</button>
+          <button type="submit">Register</button>
         </form>
-        <blockquote>
-          This is just an example, you can insert anything to login.
-          <footer>
-            <cite>— Dev Team</cite>
-          </footer>
-        </blockquote>
       </article>
     </dialog>
   );

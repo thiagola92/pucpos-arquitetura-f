@@ -3,11 +3,47 @@ import { define } from "../utils.ts";
 export const handler = define.handlers({
   async POST(ctx) {
     const formData = await ctx.req.formData();
+
     console.log(formData);
 
-    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie
+    const resp = await fetch("http://127.0.0.1:8000/token", {
+      method: "POST",
+      body: formData,
+    });
+
+    console.log(resp);
+
     const headers = new Headers();
-    headers.append("set-cookie", "token=xxxx");
+
+    if (resp.status != 200) {
+      const details = await resp.text();
+      const errorUrl = new URL("/error");
+
+      console.log(details);
+
+      errorUrl.searchParams.set("details", details);
+      headers.append("location", errorUrl.toString());
+
+      return new Response(null, {
+        status: 400,
+        headers,
+      });
+    }
+
+    const body = await resp.json();
+
+    console.log(body);
+
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie
+    headers.append("set-cookie", `access_token=${body.access_token}`);
+    headers.append("set-cookie", `token_type=${body.token_type}`);
+
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Authorization
+    // headers.append(
+    //   "authorization",
+    //   `${body.token_type} ${body.access_token}`,
+    // );
+
     headers.append("location", "/");
 
     return new Response(null, {
