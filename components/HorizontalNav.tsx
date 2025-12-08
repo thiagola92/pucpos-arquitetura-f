@@ -2,6 +2,7 @@ import { AuthAnchor } from "../islands/AuthAnchor.tsx";
 
 export interface HorizontalNavPros {
   loginVisible: boolean;
+  searchField: string;
 }
 
 export function HorizontalNav(props: HorizontalNavPros) {
@@ -26,7 +27,7 @@ export function HorizontalNav(props: HorizontalNavPros) {
         <li class="container-fluid">
           <search class="container-fluid">
             <form action="/search" role="search">
-              <input type="search" name="q" />
+              <input type="search" name="q" value={props.searchField} />
               <input type="submit" value="Search" />
             </form>
           </search>

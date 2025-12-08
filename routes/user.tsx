@@ -8,7 +8,7 @@ export default define.page(function User(ctx) {
       <Head>
         <title>Fresh Store</title>
       </Head>
-      <NavigationBar loginVisible={!ctx.state.logged} />
+      <NavigationBar loginVisible={!ctx.state.logged} searchField="" />
     </div>
   );
 });

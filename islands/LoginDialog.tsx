@@ -36,12 +36,6 @@ export function LoginDialog(props: LoginDialogPros) {
           </label>
           <button type="submit">Login</button>
         </form>
-        <blockquote>
-          This is just an example, you can insert anything to login.
-          <footer>
-            <cite>— Dev Team</cite>
-          </footer>
-        </blockquote>
       </article>
     </dialog>
   );
