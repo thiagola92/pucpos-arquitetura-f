@@ -9,7 +9,7 @@ app.use(staticFiles());
 app.use(async (ctx) => {
   // https://docs.deno.com/runtime/reference/std/http/#examples
   const cookies = getCookies(ctx.req.headers);
-  ctx.state.logged = "token" in cookies && cookies["token"] == "xxxx";
+  ctx.state.logged = "access_token" in cookies;
   return await ctx.next();
 });
 

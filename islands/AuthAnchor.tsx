@@ -39,10 +39,16 @@ export function AuthAnchor(props: AuthAnchorPros) {
   }
 
   return (
-    <a href="/logout">
-      <button type="button">
-        Logout
-      </button>
-    </a>
+    <nav>
+      <ul>
+        <li>
+          <a href="/logout">
+            <button type="button">
+              Logout
+            </button>
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 }

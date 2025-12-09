@@ -6,7 +6,7 @@ export const handler = define.handlers({
     // https://docs.deno.com/runtime/reference/std/http/#examples
     const headers = new Headers();
 
-    deleteCookie(headers, "token");
+    deleteCookie(headers, "access_token");
     headers.append("location", "/");
 
     return new Response(null, {

@@ -2,12 +2,12 @@
   border: 0.1rem solid;
 }
 
-.nav-horizontal search {
-  max-width: 45rem;
-}
-
 .nav-horizontal img {
   min-width: 2.5rem;
+}
+
+.nav-horizontal search {
+  max-width: 45rem;
 }
 
 .nav-vertical summary img {
@@ -25,6 +25,20 @@
 
 .about {
   max-width: 30rem;
+}
+
+.items div {
+  min-height: 5rem;
+}
+
+.items img {
+  max-width: 5rem;
+  max-height: 5rem;
+  float: left;
+}
+
+.items p {
+  padding-left: 6rem;
 }
 
 @media screen and (width < 768px) {
