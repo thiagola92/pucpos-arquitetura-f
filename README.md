@@ -1,5 +1,7 @@
 # pucpos-arquitetura-f
 
+![Cenário](./assets/cenario.jpg)
+
 ## Usage
 
 Make sure to install Deno:
