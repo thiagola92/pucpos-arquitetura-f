@@ -28,7 +28,7 @@ Access through http://127.0.0.1:5173
 sudo docker image build --tag "pucpos-f" .
 
 # Create container
-sudo docker container create --publish 8000:8000 --name "pucpos-f" pucpos-f
+sudo docker container create --publish 5173:5173 --name "pucpos-f" pucpos-f
 
 # Start container
 sudo docker container start --attach pucpos-f
