@@ -18,18 +18,8 @@ export const handler = define.handlers({
     const headers = new Headers();
 
     if (resp.status != 201) {
-      const details = await resp.text();
-      const errorUrl = new URL("/error");
-
-      console.log(details);
-
-      errorUrl.searchParams.set("details", details);
-      headers.append("location", errorUrl.toString());
-
-      return new Response(null, {
-        status: 409,
-        headers,
-      });
+      const info = await resp.text();
+      return ctx.redirect(`/error?info=${encodeURIComponent(info)}`);
     }
 
     headers.append("location", "/");

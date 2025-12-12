@@ -4,32 +4,17 @@ export const handler = define.handlers({
   async POST(ctx) {
     const formData = await ctx.req.formData();
 
-    console.log(formData);
-
     const resp = await fetch("http://127.0.0.1:8000/token", {
       method: "POST",
       body: formData,
     });
 
-    console.log(resp);
-
-    const headers = new Headers();
-
     if (resp.status != 200) {
-      const details = await resp.text();
-      const errorUrl = new URL("/error");
-
-      console.log(details);
-
-      errorUrl.searchParams.set("details", details);
-      headers.append("location", errorUrl.toString());
-
-      return new Response(null, {
-        status: 400,
-        headers,
-      });
+      const info = await resp.text();
+      return ctx.redirect(`/error?info=${encodeURIComponent(info)}`);
     }
 
+    const headers = new Headers();
     const body = await resp.json();
 
     console.log(body);

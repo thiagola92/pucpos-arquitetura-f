@@ -41,6 +41,10 @@
   padding-left: 6rem;
 }
 
+.item > div > div {
+  text-align: center;
+}
+
 @media screen and (width < 768px) {
   .nav-horizontal {
     display: none;
@@ -50,10 +54,20 @@
     margin-right: auto;
     margin-left: auto;
   }
+
+  .item img {
+    max-width: 20rem;
+    max-height: 20rem;
+  }
 }
 
 @media screen and (width >= 768px) {
   .nav-vertical {
     display: none;
+  }
+
+  .item img {
+    max-width: 25rem;
+    max-height: 25rem;
   }
 }
