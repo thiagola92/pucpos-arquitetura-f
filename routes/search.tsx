@@ -40,7 +40,7 @@ export default define.page(async function Search(ctx) {
     image: "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
     rating: { rate: 2.9, count: 470 },
   }, {
-    id: 10,
+    id: 11,
     title: "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
     price: 109,
     description:
@@ -49,7 +49,7 @@ export default define.page(async function Search(ctx) {
     image: "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
     rating: { rate: 2.9, count: 470 },
   }, {
-    id: 10,
+    id: 12,
     title: "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
     price: 109,
     description:
@@ -58,7 +58,7 @@ export default define.page(async function Search(ctx) {
     image: "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
     rating: { rate: 2.9, count: 470 },
   }, {
-    id: 10,
+    id: 13,
     title: "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
     price: 109,
     description:
@@ -72,7 +72,6 @@ export default define.page(async function Search(ctx) {
   const filtered: Array<any> = new Array();
 
   for (const p of products.values()) {
-    console.log(p);
     if (p.title.indexOf(query) >= 0) {
       const productLink = `/product?id=${p.id}`;
 

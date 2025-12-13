@@ -17,8 +17,6 @@ export const handler = define.handlers({
     const headers = new Headers();
     const body = await resp.json();
 
-    console.log(body);
-
     // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie
     headers.append("set-cookie", `access_token=${body.access_token}`);
     headers.append("set-cookie", `token_type=${body.token_type}`);

@@ -5,11 +5,13 @@ export interface ProductReviewPros {
 
 export function ProductReview(props: ProductReviewPros) {
   return (
-    <article>
-      <header>
-        {props.rating}
-      </header>
-      {props.comment}
-    </article>
+    <div class="container">
+      <article>
+        <header>
+          ⭐ {props.rating}
+        </header>
+        {props.comment}
+      </article>
+    </div>
   );
 }

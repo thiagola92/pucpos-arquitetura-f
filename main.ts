@@ -14,7 +14,7 @@ app.use(async (ctx) => {
 });
 
 const LoggerMiddleware = define.middleware((ctx) => {
-  console.log(`${ctx.req.method} ${ctx.req.url} ${ctx.state.logged}`);
+  console.log(`${ctx.req.method} ${ctx.req.url} logged=${ctx.state.logged}`);
   return ctx.next();
 });
 
