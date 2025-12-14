@@ -1,3 +1,5 @@
+import { Context } from "fresh";
+
 export interface UserReviewPros {
   rating: number;
   comment: string;
@@ -7,12 +9,49 @@ export interface UserReviewPros {
 }
 
 async function postReview(product: string) {
+  const resp = await fetch(`http://localhost:8000/review/${product}`, {
+    method: "POST",
+  });
+
+  console.log("review posted - ", await resp.text());
+
+  if (resp.status != 201) {
+    return;
+  }
+
+  globalThis.location.reload();
 }
 
 async function updateReview(product: string) {
+  const resp = await fetch(`http://localhost:8000/review/${product}`, {
+    method: "PUT",
+  });
+
+  console.log("review updated - ", await resp.text());
+
+  if (resp.status != 204) {
+    return;
+  }
+
+  globalThis.location.reload();
 }
 
 async function deleteReview(product: string) {
+  const resp = await fetch(`http://localhost:8000/review/${product}`, {
+    method: "DELETE",
+    credentials: "include",
+    headers: {
+      "Authorization": "Bearer TOKEN",
+    },
+  });
+
+  console.log("review deleted - ", await resp.text());
+
+  if (resp.status != 204) {
+    return;
+  }
+
+  globalThis.location.reload();
 }
 
 export function UserReview(props: UserReviewPros) {

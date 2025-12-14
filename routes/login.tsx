@@ -4,7 +4,7 @@ export const handler = define.handlers({
   async POST(ctx) {
     const formData = await ctx.req.formData();
 
-    const resp = await fetch("http://127.0.0.1:8000/token", {
+    const resp = await fetch("http://localhost:8000/token", {
       method: "POST",
       body: formData,
     });

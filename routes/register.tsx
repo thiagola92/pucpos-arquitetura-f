@@ -9,7 +9,7 @@ export const handler = define.handlers({
       "password": formData.get("password"),
     };
 
-    const resp = await fetch("http://127.0.0.1:8000/user", {
+    const resp = await fetch("http://localhost:8000/user", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),

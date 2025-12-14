@@ -49,11 +49,11 @@ export default define.page(async function Product(ctx) {
     rating: { rate: 3.3, count: 203 },
   };
 
-  resp = await fetch(`http://127.0.0.1:8000/review/${productId}`);
+  resp = await fetch(`http://localhost:8000/review/${productId}`);
   const exist = resp.status == 200;
   const review = resp.status == 200 ? await resp.json() : {};
 
-  resp = await fetch(`http://127.0.0.1:8000/reviews/${productId}`);
+  resp = await fetch(`http://localhost:8000/reviews/${productId}`);
   const reviews: Array<any> = resp.status == 200 ? await resp.json() : [];
 
   const filtered: Array<any> = reviews.filter((r) =>

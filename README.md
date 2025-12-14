@@ -21,7 +21,7 @@ deno task dev
 
 This will watch the project directory and restart as necessary.
 
-Access through http://127.0.0.1:5173
+Access through http://localhost:5173
 
 ## Container
 
