@@ -5,66 +5,70 @@ import { ErrorMsg } from "../components/ErrorMsg.tsx";
 import { ProductDetails } from "../components/ProductDetails.tsx";
 import { ProductReview } from "../components/ProductReview.tsx";
 import { UserReview } from "../islands/UserReview.tsx";
+import { getCookies } from "@std/http/cookie";
+
+function errorPage(ctx: any) {
+  return (
+    <div>
+      <Head>
+        <title>Fresh Store</title>
+      </Head>
+      <NavigationBar loginVisible={!ctx.state.logged} searchField="" />
+      <ErrorMsg message="Failed to obtain product" />
+    </div>
+  );
+}
+
+async function getProduct(productId: string) {
+  const resp = await fetch(`https://fakestoreapi.com/products/${productId}`);
+  return resp.status == 200 ? await resp.json() : null;
+}
+
+async function getReview(
+  productId: string,
+  accessToken: string,
+): Promise<any | null> {
+  const resp = await fetch(`http://localhost:8000/review/${productId}`, {
+    credentials: "include",
+    headers: {
+      "Authorization": `Bearer ${accessToken}`,
+    },
+  });
+
+  return resp.status == 200 ? await resp.json() : {};
+}
+
+async function getReviews(
+  productId: string,
+): Promise<Array<any>> {
+  const resp = await fetch(`http://localhost:8000/review/${productId}`);
+  return resp.status == 200 ? await resp.json() : [];
+}
 
 export default define.page(async function Product(ctx) {
-  let resp;
-
-  const productId = ctx.url.searchParams.get("id");
+  const accessToken = getCookies(ctx.req.headers).access_token ?? "";
+  const productId = ctx.url.searchParams.get("id") ?? "";
 
   if (productId == null) {
-    return (
-      <div>
-        <Head>
-          <title>Fresh Store</title>
-        </Head>
-        <NavigationBar loginVisible={!ctx.state.logged} searchField="" />
-        <ErrorMsg message="Failed to obtain product" />
-      </div>
-    );
+    return errorPage(ctx);
   }
 
-  // resp = await fetch(`https://fakestoreapi.com/products/${productId}`);
+  const product = await getProduct(productId);
 
-  // if (resp.status != 200) {
-  //   return (
-  //     <div>
-  //       <Head>
-  //         <title>Fresh Store</title>
-  //       </Head>
-  //       <NavigationBar loginVisible={!ctx.state.logged} searchField="" />
-  //       <ErrorMsg message="Failed to obtain product" />
-  //     </div>
-  //   );
-  // }
+  if (product == null) {
+    return errorPage(ctx);
+  }
 
-  // const product = await productResp.json();
-  const product = {
-    id: 9,
-    title: "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-    price: 64,
-    description:
-      "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
-    category: "electronics",
-    image: "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
-    rating: { rate: 3.3, count: 203 },
-  };
+  const review = await getReview(productId, accessToken);
+  let reviews = await getReviews(productId);
 
-  resp = await fetch(`http://localhost:8000/review/${productId}`);
-  const exist = resp.status == 200;
-  const review = resp.status == 200 ? await resp.json() : {};
+  if ("owner_id" in review) {
+    reviews = reviews.filter((r) => r.owner_id != (review.owner_id));
+  }
 
-  resp = await fetch(`http://localhost:8000/reviews/${productId}`);
-  const reviews: Array<any> = resp.status == 200 ? await resp.json() : [];
-
-  const filtered: Array<any> = reviews.filter((r) =>
-    r.owner_id != (review.owner_id ?? -1)
-  );
-
-  const mapped: Array<any> = filtered.map((r) => (
+  reviews = reviews.map((r) => (
     <ProductReview rating={r.rating} comment={r.comment}></ProductReview>
   ));
-
-  console.log(reviews);
 
   return (
     <div>
@@ -80,15 +84,16 @@ export default define.page(async function Product(ctx) {
       >
       </ProductDetails>
       <UserReview
-        rating={review.ratting ?? 5}
+        rating={review.rating ?? 5}
         comment={review.comment ?? ""}
-        exist={exist}
+        exist={"owner_id" in review}
         logged={ctx.state.logged}
         product={productId}
+        accessToken={accessToken}
       >
       </UserReview>
-      <h1 class="container">Reviews</h1>
-      {mapped}
+      <h1 class="container">Reviews ({reviews.length})</h1>
+      {reviews}
     </div>
   );
 });

@@ -6,10 +6,11 @@ export interface UserReviewPros {
   exist: boolean;
   logged: boolean;
   product: string;
+  accessToken: string;
 }
 
-async function postReview(product: string) {
-  const resp = await fetch(`http://localhost:8000/review/${product}`, {
+async function postReview(props: UserReviewPros) {
+  const resp = await fetch(`http://localhost:8000/review/${props.product}`, {
     method: "POST",
   });
 
@@ -22,8 +23,8 @@ async function postReview(product: string) {
   globalThis.location.reload();
 }
 
-async function updateReview(product: string) {
-  const resp = await fetch(`http://localhost:8000/review/${product}`, {
+async function updateReview(props: UserReviewPros) {
+  const resp = await fetch(`http://localhost:8000/review/${props.product}`, {
     method: "PUT",
   });
 
@@ -36,12 +37,12 @@ async function updateReview(product: string) {
   globalThis.location.reload();
 }
 
-async function deleteReview(product: string) {
-  const resp = await fetch(`http://localhost:8000/review/${product}`, {
+async function deleteReview(props: UserReviewPros) {
+  const resp = await fetch(`http://localhost:8000/review/${props.product}`, {
     method: "DELETE",
     credentials: "include",
     headers: {
-      "Authorization": "Bearer TOKEN",
+      "Authorization": `Bearer ${props.accessToken}`,
     },
   });
 
@@ -59,25 +60,28 @@ export function UserReview(props: UserReviewPros) {
     return <div></div>;
   }
 
+  console.log(props.exist);
   if (!props.exist) {
-    <div class="container">
-      <article>
-        <header>
-          <input type="number" name="rating" min="0" max="5"></input>
-        </header>
-        <textarea>
-        </textarea>
-        <footer>
-          <div class="grid">
-            <div>
-              <button type="submit" onClick={() => postReview(props.product)}>
-                Submit
-              </button>
+    return (
+      <div class="container">
+        <article>
+          <header>
+            <input type="number" name="rating" min="0" max="5"></input>
+          </header>
+          <textarea>
+          </textarea>
+          <footer>
+            <div class="grid">
+              <div>
+                <button type="submit" onClick={() => postReview(props)}>
+                  Submit
+                </button>
+              </div>
             </div>
-          </div>
-        </footer>
-      </article>
-    </div>;
+          </footer>
+        </article>
+      </div>
+    );
   }
 
   return (
@@ -92,7 +96,7 @@ export function UserReview(props: UserReviewPros) {
         <footer>
           <div class="grid">
             <div>
-              <button type="submit" onClick={() => updateReview(props.product)}>
+              <button type="submit" onClick={() => updateReview(props)}>
                 Update
               </button>
             </div>
@@ -100,7 +104,7 @@ export function UserReview(props: UserReviewPros) {
               <button
                 type="submit"
                 class="secondary"
-                onClick={() => deleteReview(props.product)}
+                onClick={() => deleteReview(props)}
               >
                 Delete
               </button>
