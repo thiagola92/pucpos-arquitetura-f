@@ -41,7 +41,7 @@ async function getReview(
 async function getReviews(
   productId: string,
 ): Promise<Array<any>> {
-  const resp = await fetch(`http://localhost:8000/review/${productId}`);
+  const resp = await fetch(`http://localhost:8000/reviews/${productId}`);
   return resp.status == 200 ? await resp.json() : [];
 }
 

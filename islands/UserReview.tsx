@@ -10,7 +10,6 @@ export interface UserReviewPros {
 }
 
 async function postReview(props: UserReviewPros) {
-  console.log(document.getElementById("rating")?.value);
   const resp = await fetch(`http://localhost:8000/review`, {
     method: "POST",
     credentials: "include",
@@ -24,8 +23,6 @@ async function postReview(props: UserReviewPros) {
       "comment": document.getElementById("comment")?.value,
     }),
   });
-
-  console.log("review posted - ", await resp.text());
 
   if (resp.status != 201) {
     return;
@@ -42,11 +39,14 @@ async function updateReview(props: UserReviewPros) {
       "Authorization": `Bearer ${props.accessToken}`,
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      "product_id": props.product,
+      "rating": document.getElementById("rating")?.value,
+      "comment": document.getElementById("comment")?.value,
+    }),
   });
 
-  console.log("review updated - ", await resp.text());
-
-  if (resp.status != 204) {
+  if (resp.status != 200) {
     return;
   }
 
@@ -62,9 +62,7 @@ async function deleteReview(props: UserReviewPros) {
     },
   });
 
-  console.log("review deleted - ", await resp.text());
-
-  if (resp.status != 204) {
+  if (resp.status != 200) {
     return;
   }
 
@@ -76,7 +74,6 @@ export function UserReview(props: UserReviewPros) {
     return <div></div>;
   }
 
-  console.log(props.exist);
   if (!props.exist) {
     return (
       <div class="container">
@@ -112,11 +109,19 @@ export function UserReview(props: UserReviewPros) {
     <div class="container">
       <article>
         <header>
-          {props.rating}
+          <input
+            type="number"
+            id="rating"
+            name="rating"
+            min="0"
+            max="5"
+            value={props.rating}
+          >
+          </input>
         </header>
-        <p>
+        <textarea id="comment">
           {props.comment}
-        </p>
+        </textarea>
         <footer>
           <div class="grid">
             <div>
