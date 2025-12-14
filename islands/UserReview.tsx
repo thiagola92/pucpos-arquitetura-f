@@ -10,8 +10,19 @@ export interface UserReviewPros {
 }
 
 async function postReview(props: UserReviewPros) {
-  const resp = await fetch(`http://localhost:8000/review/${props.product}`, {
+  console.log(document.getElementById("rating")?.value);
+  const resp = await fetch(`http://localhost:8000/review`, {
     method: "POST",
+    credentials: "include",
+    headers: {
+      "Authorization": `Bearer ${props.accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "product_id": props.product,
+      "rating": document.getElementById("rating")?.value,
+      "comment": document.getElementById("comment")?.value,
+    }),
   });
 
   console.log("review posted - ", await resp.text());
@@ -26,6 +37,11 @@ async function postReview(props: UserReviewPros) {
 async function updateReview(props: UserReviewPros) {
   const resp = await fetch(`http://localhost:8000/review/${props.product}`, {
     method: "PUT",
+    credentials: "include",
+    headers: {
+      "Authorization": `Bearer ${props.accessToken}`,
+      "Content-Type": "application/json",
+    },
   });
 
   console.log("review updated - ", await resp.text());
@@ -66,9 +82,17 @@ export function UserReview(props: UserReviewPros) {
       <div class="container">
         <article>
           <header>
-            <input type="number" name="rating" min="0" max="5"></input>
+            <input
+              type="number"
+              id="rating"
+              name="rating"
+              min="0"
+              max="5"
+              value="5"
+            >
+            </input>
           </header>
-          <textarea>
+          <textarea id="comment">
           </textarea>
           <footer>
             <div class="grid">
