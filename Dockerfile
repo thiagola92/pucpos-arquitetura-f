@@ -12,4 +12,4 @@ RUN deno install
 RUN deno task build
 
 # Executed at the container startup
-CMD ["deno", "task", "start"]
+CMD ["deno", "task", "dev"]
