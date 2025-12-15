@@ -26,21 +26,25 @@ Access through http://localhost:5173
 ## Container
 
 ```shell
+# Create network (if doesn't exist)
+sudo docker network create --driver bridge pucpos
+
 # Build image
 sudo docker image build --tag "pucpos-f" .
 
 # Create container
-sudo docker container create --publish 5173:5173 --name "pucpos-f" pucpos-f
+sudo docker container create --network pucpos --publish 5173:5173 --name "pucpos-f" pucpos-f
 
 # Start container
 sudo docker container start --attach pucpos-f
 ```
 
 ```shell
-# Remove container and image
+# Remove container, image and network
 sudo docker container stop pucpos-f
 sudo docker container rm pucpos-f
 sudo docker image rm pucpos-f
+sudo docker network rm pucpos
 ```
 
 ## References
