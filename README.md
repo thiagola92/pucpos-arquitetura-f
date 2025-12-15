@@ -2,7 +2,7 @@
 
 ![Cenário](./assets/cenario.jpg)
 
-## Usage
+# Usage
 
 Make sure to install Deno:
 https://docs.deno.com/runtime/getting_started/installation
@@ -23,7 +23,7 @@ This will watch the project directory and restart as necessary.
 
 Access through http://localhost:5173
 
-## Container
+# Container
 
 ```shell
 # Create network (if doesn't exist)
@@ -47,7 +47,7 @@ sudo docker image rm pucpos-f
 sudo docker network rm pucpos
 ```
 
-## References
+# References
 
 - https://fresh.deno.dev/
 - https://fakestoreapi.com/
