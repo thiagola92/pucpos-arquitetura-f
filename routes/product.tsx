@@ -6,7 +6,7 @@ import { ProductDetails } from "../components/ProductDetails.tsx";
 import { ProductReview } from "../components/ProductReview.tsx";
 import { UserReview } from "../islands/UserReview.tsx";
 import { getCookies } from "@std/http/cookie";
-import { BACKEND_URL } from "../config.ts";
+import { S_BACKEND_URL } from "../config.ts";
 
 function errorPage(ctx: any) {
   return (
@@ -29,7 +29,7 @@ async function getReview(
   productId: string,
   accessToken: string,
 ): Promise<any | null> {
-  const resp = await fetch(`${BACKEND_URL}/review/${productId}`, {
+  const resp = await fetch(`${S_BACKEND_URL}/review/${productId}`, {
     credentials: "include",
     headers: {
       "Authorization": `Bearer ${accessToken}`,
@@ -42,7 +42,7 @@ async function getReview(
 async function getReviews(
   productId: string,
 ): Promise<Array<any>> {
-  const resp = await fetch(`${BACKEND_URL}/reviews/${productId}`);
+  const resp = await fetch(`${S_BACKEND_URL}/reviews/${productId}`);
   return resp.status == 200 ? await resp.json() : [];
 }
 

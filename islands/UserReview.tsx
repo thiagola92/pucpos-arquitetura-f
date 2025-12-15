@@ -1,4 +1,4 @@
-import { BACKEND_URL } from "../config.ts";
+import { C_BACKEND_URL } from "../config.ts";
 
 export interface UserReviewPros {
   rating: number;
@@ -10,7 +10,7 @@ export interface UserReviewPros {
 }
 
 async function postReview(props: UserReviewPros) {
-  const resp = await fetch(`${BACKEND_URL}/review`, {
+  const resp = await fetch(`${C_BACKEND_URL}/review`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -32,7 +32,7 @@ async function postReview(props: UserReviewPros) {
 }
 
 async function updateReview(props: UserReviewPros) {
-  const resp = await fetch(`${BACKEND_URL}/review/${props.product}`, {
+  const resp = await fetch(`${C_BACKEND_URL}/review/${props.product}`, {
     method: "PUT",
     credentials: "include",
     headers: {
@@ -54,7 +54,7 @@ async function updateReview(props: UserReviewPros) {
 }
 
 async function deleteReview(props: UserReviewPros) {
-  const resp = await fetch(`${BACKEND_URL}/review/${props.product}`, {
+  const resp = await fetch(`${C_BACKEND_URL}/review/${props.product}`, {
     method: "DELETE",
     credentials: "include",
     headers: {

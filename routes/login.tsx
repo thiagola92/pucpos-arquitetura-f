@@ -1,11 +1,11 @@
-import { BACKEND_URL } from "../config.ts";
+import { S_BACKEND_URL } from "../config.ts";
 import { define } from "../utils.ts";
 
 export const handler = define.handlers({
   async POST(ctx) {
     const formData = await ctx.req.formData();
 
-    const resp = await fetch(`${BACKEND_URL}/token`, {
+    const resp = await fetch(`${S_BACKEND_URL}/token`, {
       method: "POST",
       body: formData,
     });

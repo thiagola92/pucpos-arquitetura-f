@@ -1,4 +1,4 @@
-import { BACKEND_URL } from "../config.ts";
+import { S_BACKEND_URL } from "../config.ts";
 import { define } from "../utils.ts";
 
 export const handler = define.handlers({
@@ -10,7 +10,7 @@ export const handler = define.handlers({
       "password": formData.get("password"),
     };
 
-    const resp = await fetch(`${BACKEND_URL}/user`, {
+    const resp = await fetch(`${S_BACKEND_URL}/user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
