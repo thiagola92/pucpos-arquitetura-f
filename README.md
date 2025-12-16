@@ -1,6 +1,9 @@
 # pucpos-arquitetura-f
+Front-End for **Fresh Store**, which uses [Fake Store API](https://fakestoreapi.com/) and our own [Back-End API](https://github.com/thiagola92/pucpos-arquitetura-b) to show products and let the user write reviews.
 
 ![Cenário](./assets/cenario.jpg)
+
+This project uses [Deno](https://deno.com/) as runtime for JavaScript/TypeScript and [Fresh](https://fresh.deno.dev/) as framework.
 
 # Usage
 
